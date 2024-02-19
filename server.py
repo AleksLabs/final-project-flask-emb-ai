@@ -12,6 +12,9 @@ def sent_analyzer():
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
 
+    if response['dominant_emotion'] == None:
+        return "Invalid text! Please try again!"
+        
     anger = response['anger']
     disgust = response['disgust']
     fear = response['fear']
@@ -24,4 +27,3 @@ def sent_analyzer():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-  
